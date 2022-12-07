@@ -1,1 +1,3 @@
-# deel
+`npm i`
+
+`npm run dev`
