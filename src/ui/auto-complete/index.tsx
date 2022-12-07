@@ -108,7 +108,7 @@ const AutoComplete = ({
                   onClick={() => handleOptionClick(option)}
                   onMouseEnter={() => handleMouseEnter(index)}
                 >
-                  {option.label}
+                  {highlightText(option.label, value)}
                 </div>
               ))}
             </>
@@ -118,5 +118,18 @@ const AutoComplete = ({
     </div>
   );
 };
+
+function highlightText(text: string, query: string) {
+  const parts = text.split(new RegExp(`(${query})`, 'gi'));
+  return (
+    <span>
+      {parts.map((part, i) => (
+        <span key={i} style={part.toLowerCase() === query.toLowerCase() ? { fontWeight: 'bold' } : {}}>
+          {part}
+        </span>
+      ))}
+    </span>
+  );
+}
 
 export { AutoComplete };
